@@ -3,28 +3,38 @@ import {
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbSeparator,
-  } from '@chakra-ui/react';
-  import { Link } from "react-router-dom";
+} from '@chakra-ui/react';
+import { Link } from "react-router-dom";
+// import { IoHome } from "react-icons/io5";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
-export default function NavBar(currentPage: string) {
+interface NavBarProps {
+    currentPage: string;
+}
 
-    return (
-        <Breadcrumb>
-            <BreadcrumbItem isCurrentPage={"home"===currentPage}>
-                <BreadcrumbLink as={Link} to="/">
-                Home
-                </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem isCurrentPage={"projects"===currentPage}>
-                <BreadcrumbLink as={Link} to="/projects">
-                Projects
-                </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbItem isCurrentPage={"photography"===currentPage}>
-                <BreadcrumbLink>
-                Photography
-                </BreadcrumbLink>
-            </BreadcrumbItem>
-        </Breadcrumb>
+const NavBar: React.FC<NavBarProps> = (props) => {
+
+  return (
+    <div> 
+      <Breadcrumb separator=" > " fontWeight="medium">
+        <BreadcrumbItem isCurrentPage={"home"===props.currentPage}>
+          <BreadcrumbLink as={Link} to="/">
+            Home
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage={"projects"===props.currentPage}>
+          <BreadcrumbLink as={Link} to="/projects">
+            Projects
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbItem isCurrentPage={"photography"===props.currentPage}>
+          <BreadcrumbLink as={Link} to="/photography">
+            Photography
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+      </Breadcrumb>
+    </div>
     )
 }
+
+export default NavBar;
